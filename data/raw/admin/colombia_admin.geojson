@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "MPIO_CCDGO": "44001",
+        "MPIO_CNMBR": "Riohacha",
+        "DPTO_CNMBR": "La Guajira",
+        "DPTO_CCDGO": "44"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-73.0, 10.5], [-71.0, 10.5], [-71.0, 12.5], [-73.0, 12.5], [-73.0, 10.5]
+        ]]
+      }
+    }
+  ]
+}
