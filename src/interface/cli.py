@@ -26,6 +26,8 @@ from ..domain.entities import (
 )
 from ..use_cases.compute_wsi import ComputeWSIUseCase
 from ..use_cases.generate_report import GenerateReportUseCase
+from ..use_cases.compute_wsi_by_admin import ComputeWSIByAdminUseCase
+from ..use_cases.map_wsi_by_admin import MapWSIByAdminUseCase
 from ..infrastructure.rasterio_adapter import RasterioAdapter
 from ..infrastructure.pyqgis_adapter import PyQGISAdapter
 from ..infrastructure.arcpy_adapter import ArcPyAdapter
@@ -61,6 +63,29 @@ def setup_logging(verbose: bool = False) -> None:
             logging.FileHandler('vento.log')
         ]
     )
+
+
+def load_config_dict(config_path: str) -> dict:
+    """
+    Load processing configuration from YAML file as dictionary.
+    
+    Args:
+        config_path: Path to configuration file
+        
+    Returns:
+        Configuration dictionary
+    """
+    import yaml
+    
+    try:
+        with open(config_path, 'r') as f:
+            config_data = yaml.safe_load(f)
+        
+        return config_data
+        
+    except Exception as e:
+        logger.error(f"Failed to load configuration: {e}")
+        raise
 
 
 def load_config(config_path: str) -> ProcessingConfig:
@@ -416,18 +441,237 @@ if TYPER_AVAILABLE:
         print("  • compute-wsi    - Run wind suitability analysis")
         print("  • generate-report - Generate viability reports")
         print("  • validate-config - Validate configuration and data")
+        print("  • compute-wsi-by-admin - Compute WSI statistics by administrative boundaries")
+        print("  • map-wsi-by-admin - Generate WSI choropleth maps by administrative boundaries")
+        print("  • map-colombia-regions - Generate interactive map with Colombia region selector")
+        print("  • map-ocha-wsi - Generate WSI map with OCHA administrative boundaries and search")
         print("  • info           - Show this information")
         print()
         print("For more information, see the documentation in docs/")
 
 
-    def main():
-        """Main entry point for the CLI."""
-        if not TYPER_AVAILABLE:
-            print("Error: Typer is not available. Please install it with: pip install typer")
+@app.command("compute-wsi-by-admin")
+def compute_wsi_by_admin(
+    config_file: str = Argument(..., help="Path to YAML configuration file"),
+    verbose: bool = Option(False, "--verbose", "-v", help="Enable verbose logging")
+):
+    """
+    Compute WSI statistics by administrative boundaries.
+    
+    This command calculates Wind Suitability Index (WSI) statistics for each
+    administrative unit (department or municipality) defined in the configuration.
+    """
+    if not TYPER_AVAILABLE:
+        print("Error: Typer is not available. Please install it with: pip install typer")
+        sys.exit(1)
+    
+    setup_logging(verbose)
+    logger = logging.getLogger(__name__)
+    
+    try:
+        logger.info("Starting WSI computation by administrative boundaries")
+        
+        # Load configuration as dictionary
+        config = load_config_dict(config_file)
+        
+        # Add WSI raster path to config
+        config['wsi_raster_path'] = 'outputs/rasters/wsi.tif'
+        
+        # Check if WSI raster exists
+        if not Path(config['wsi_raster_path']).exists():
+            print(f"Error: WSI raster not found at {config['wsi_raster_path']}")
+            print("Please run 'compute-wsi' first to generate the WSI raster.")
             sys.exit(1)
         
-        app()
+        # Check if admin_boundaries configuration exists
+        if 'admin_boundaries' not in config:
+            print("Error: admin_boundaries configuration not found in config file")
+            print("Please add admin_boundaries section to your configuration.")
+            sys.exit(1)
+        
+        # Execute use case
+        use_case = ComputeWSIByAdminUseCase()
+        result = use_case.execute(config)
+        
+        if result['success']:
+            print(f"✅ WSI computation by administrative boundaries completed successfully!")
+            print(f"📊 Total units processed: {result['total_units']}")
+            print(f"📄 Statistics file: {result['statistics_file']}")
+            print(f"🗂️  Rasters directory: {result['rasters_dir']}")
+        else:
+            print("❌ WSI computation by administrative boundaries failed")
+            sys.exit(1)
+            
+    except Exception as e:
+        logger.error(f"Failed to compute WSI by administrative boundaries: {e}")
+        print(f"❌ Error: {e}")
+        sys.exit(1)
+
+
+@app.command("map-wsi-by-admin")
+def map_wsi_by_admin(
+    config_file: str = Argument(..., help="Path to YAML configuration file"),
+    verbose: bool = Option(False, "--verbose", "-v", help="Enable verbose logging")
+):
+    """
+    Generate WSI choropleth maps by administrative boundaries.
+    
+    This command creates interactive choropleth maps showing WSI statistics
+    for administrative units (departments or municipalities).
+    """
+    if not TYPER_AVAILABLE:
+        print("Error: Typer is not available. Please install it with: pip install typer")
+        sys.exit(1)
+    
+    setup_logging(verbose)
+    logger = logging.getLogger(__name__)
+    
+    try:
+        logger.info("Starting WSI choropleth map generation by administrative boundaries")
+        
+        # Load configuration as dictionary
+        config = load_config_dict(config_file)
+        
+        # Check if admin_boundaries configuration exists
+        if 'admin_boundaries' not in config:
+            print("Error: admin_boundaries configuration not found in config file")
+            print("Please add admin_boundaries section to your configuration.")
+            sys.exit(1)
+        
+        # Check if statistics file exists (generic); if not, fallback to OCHA variant
+        target_level = config['admin_boundaries'].get('target_level', 'admin')
+        stats_file = f"outputs/reports/wsi_stats_by_{target_level}.json"
+        ocha_stats_file = f"outputs/reports/wsi_stats_by_{target_level}_ocha.json"
+        
+        if not Path(stats_file).exists():
+            if Path(ocha_stats_file).exists():
+                # Fallback to OCHA map flow if OCHA stats are present
+                print(f"Info: Found OCHA statistics file: {ocha_stats_file}")
+                print("Using OCHA map generator instead (equivalent output with COD-AB boundaries)...")
+                from ..infrastructure.folium_map import FoliumMapGenerator
+                map_generator = FoliumMapGenerator()
+                map_file = map_generator.create_ocha_wsi_map(config)
+                print(f"✅ WSI choropleth map (OCHA) generated successfully!")
+                print(f"🗺️  Map file: {map_file}")
+                return
+            else:
+                print(f"Error: Statistics file not found: {stats_file}")
+                print("Please run 'compute-wsi-by-admin' first to generate the statistics.")
+                sys.exit(1)
+        
+        # Execute use case
+        use_case = MapWSIByAdminUseCase()
+        result = use_case.execute(config)
+        
+        if result['success']:
+            print(f"✅ WSI choropleth map generation completed successfully!")
+            print(f"🗺️  Map file: {result['map_file']}")
+            print(f"📊 Total units: {result['total_units']}")
+            print(f"📈 Statistics loaded: {result['statistics_loaded']}")
+        else:
+            print("❌ WSI choropleth map generation failed")
+            sys.exit(1)
+            
+    except Exception as e:
+        logger.error(f"Failed to generate WSI choropleth map: {e}")
+        print(f"❌ Error: {e}")
+        sys.exit(1)
+
+
+@app.command("map-colombia-regions")
+def map_colombia_regions(
+    config_file: str = Argument(..., help="Path to YAML configuration file"),
+    verbose: bool = Option(False, "--verbose", "-v", help="Enable verbose logging")
+):
+    """
+    Generate interactive map with Colombia region selector.
+    
+    This command creates an interactive map with a dropdown selector
+    to choose different regions of Colombia and automatically zoom to them.
+    """
+    if not TYPER_AVAILABLE:
+        print("Error: Typer is not available. Please install it with: pip install typer")
+        sys.exit(1)
+    
+    setup_logging(verbose)
+    logger = logging.getLogger(__name__)
+    
+    try:
+        logger.info("Starting Colombia regions interactive map generation")
+        
+        # Load configuration as dictionary
+        config = load_config_dict(config_file)
+        
+        # Generate interactive map with region selector
+        from ..infrastructure.folium_map import FoliumMapGenerator
+        
+        map_generator = FoliumMapGenerator()
+        map_file = map_generator.create_colombia_regions_map(config)
+        
+        print(f"✅ Colombia regions interactive map generated successfully!")
+        print(f"🗺️  Map file: {map_file}")
+        print(f"🌎 Open the map in your browser to explore different regions of Colombia")
+            
+    except Exception as e:
+        logger.error(f"Failed to generate Colombia regions map: {e}")
+        print(f"❌ Error: {e}")
+        sys.exit(1)
+
+
+@app.command("map-ocha-wsi")
+def map_ocha_wsi(
+    config_file: str = Argument(..., help="Path to YAML configuration file"),
+    verbose: bool = Option(False, "--verbose", "-v", help="Enable verbose logging")
+):
+    """
+    Generate WSI map with OCHA administrative boundaries and search.
+    
+    This command creates an interactive map using OCHA COD-AB administrative
+    boundaries with WSI data visualization and search functionality.
+    """
+    if not TYPER_AVAILABLE:
+        print("Error: Typer is not available. Please install it with: pip install typer")
+        sys.exit(1)
+    
+    setup_logging(verbose)
+    logger = logging.getLogger(__name__)
+    
+    try:
+        logger.info("Starting OCHA WSI map generation")
+        
+        # Load configuration as dictionary
+        config = load_config_dict(config_file)
+        
+        # Check if admin_boundaries configuration exists
+        if 'admin_boundaries' not in config:
+            print("Error: admin_boundaries configuration not found in config file")
+            print("Please add admin_boundaries section to your configuration.")
+            sys.exit(1)
+        
+        # Generate OCHA WSI map
+        from ..infrastructure.folium_map import FoliumMapGenerator
+        
+        map_generator = FoliumMapGenerator()
+        map_file = map_generator.create_ocha_wsi_map(config)
+        
+        print(f"✅ OCHA WSI map generated successfully!")
+        print(f"🗺️  Map file: {map_file}")
+        print(f"🔍 The map includes search functionality for administrative units")
+        print(f"📊 WSI data visualization with official OCHA boundaries")
+            
+    except Exception as e:
+        logger.error(f"Failed to generate OCHA WSI map: {e}")
+        print(f"❌ Error: {e}")
+        sys.exit(1)
+
+
+def main():
+    """Main entry point for the CLI."""
+    if not TYPER_AVAILABLE:
+        print("Error: Typer is not available. Please install it with: pip install typer")
+        sys.exit(1)
+    
+    app()
 
 
 if __name__ == "__main__":

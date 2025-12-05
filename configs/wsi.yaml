@@ -54,5 +54,16 @@ quality_control:
   verify_data_coverage: true
   min_coverage_percent: 50.0
 
+# Administrative boundaries configuration (OCHA COD-AB 2020)
+admin_boundaries:
+  file: "data/raw/admin/col_admbnda_adm2_mgn_20200416.shp"
+  layer: null
+  target_level: "municipio"
+  id_field: "ADM2_PCODE"
+  name_field: "ADM2_ES"
+  parent_field: "ADM1_ES"
+  filter:
+    ADM1_ES: ["La Guajira"]
+
 
 

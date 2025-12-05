@@ -1,0 +1,460 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "44",
+        "DPTO_CNMBR": "La Guajira",
+        "REGION": "Caribe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-73.0, 10.5], [-71.0, 10.5], [-71.0, 12.5], [-73.0, 12.5], [-73.0, 10.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "20",
+        "DPTO_CNMBR": "Cesar",
+        "REGION": "Caribe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-74.0, 8.0], [-72.0, 8.0], [-72.0, 10.5], [-74.0, 10.5], [-74.0, 8.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "47",
+        "DPTO_CNMBR": "Magdalena",
+        "REGION": "Caribe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.0, 9.0], [-73.0, 9.0], [-73.0, 11.0], [-75.0, 11.0], [-75.0, 9.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "08",
+        "DPTO_CNMBR": "Atlántico",
+        "REGION": "Caribe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.5, 10.0], [-74.0, 10.0], [-74.0, 11.0], [-75.5, 11.0], [-75.5, 10.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "13",
+        "DPTO_CNMBR": "Bolívar",
+        "REGION": "Caribe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.5, 8.0], [-73.5, 8.0], [-73.5, 10.0], [-75.5, 10.0], [-75.5, 8.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "23",
+        "DPTO_CNMBR": "Córdoba",
+        "REGION": "Caribe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-76.0, 7.5], [-74.5, 7.5], [-74.5, 9.0], [-76.0, 9.0], [-76.0, 7.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "70",
+        "DPTO_CNMBR": "Sucre",
+        "REGION": "Caribe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.5, 8.5], [-74.5, 8.5], [-74.5, 9.5], [-75.5, 9.5], [-75.5, 8.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "25",
+        "DPTO_CNMBR": "Cundinamarca",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.0, 4.0], [-73.0, 4.0], [-73.0, 6.0], [-75.0, 6.0], [-75.0, 4.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "11",
+        "DPTO_CNMBR": "Bogotá D.C.",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-74.5, 4.0], [-74.0, 4.0], [-74.0, 4.5], [-74.5, 4.5], [-74.5, 4.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "15",
+        "DPTO_CNMBR": "Boyacá",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-74.0, 4.5], [-72.0, 4.5], [-72.0, 6.5], [-74.0, 6.5], [-74.0, 4.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "17",
+        "DPTO_CNMBR": "Caldas",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-76.0, 4.5], [-74.5, 4.5], [-74.5, 6.0], [-76.0, 6.0], [-76.0, 4.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "41",
+        "DPTO_CNMBR": "Huila",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-76.0, 1.5], [-74.5, 1.5], [-74.5, 3.0], [-76.0, 3.0], [-76.0, 1.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "63",
+        "DPTO_CNMBR": "Quindío",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.5, 4.0], [-75.0, 4.0], [-75.0, 4.5], [-75.5, 4.5], [-75.5, 4.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "66",
+        "DPTO_CNMBR": "Risaralda",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-76.0, 4.0], [-75.0, 4.0], [-75.0, 5.0], [-76.0, 5.0], [-76.0, 4.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "68",
+        "DPTO_CNMBR": "Santander",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-74.0, 5.5], [-72.5, 5.5], [-72.5, 7.5], [-74.0, 7.5], [-74.0, 5.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "54",
+        "DPTO_CNMBR": "Norte de Santander",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-73.5, 6.5], [-72.0, 6.5], [-72.0, 8.5], [-73.5, 8.5], [-73.5, 6.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "73",
+        "DPTO_CNMBR": "Tolima",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-76.0, 3.0], [-74.5, 3.0], [-74.5, 5.0], [-76.0, 5.0], [-76.0, 3.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "05",
+        "DPTO_CNMBR": "Antioquia",
+        "REGION": "Andina"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-77.0, 5.5], [-74.5, 5.5], [-74.5, 8.0], [-77.0, 8.0], [-77.0, 5.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "27",
+        "DPTO_CNMBR": "Chocó",
+        "REGION": "Pacífico"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-78.0, 4.0], [-76.0, 4.0], [-76.0, 8.0], [-78.0, 8.0], [-78.0, 4.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "52",
+        "DPTO_CNMBR": "Nariño",
+        "REGION": "Pacífico"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-79.0, 0.5], [-77.0, 0.5], [-77.0, 2.0], [-79.0, 2.0], [-79.0, 0.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "19",
+        "DPTO_CNMBR": "Cauca",
+        "REGION": "Pacífico"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-78.0, 1.5], [-76.0, 1.5], [-76.0, 3.0], [-78.0, 3.0], [-78.0, 1.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "76",
+        "DPTO_CNMBR": "Valle del Cauca",
+        "REGION": "Pacífico"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-77.0, 3.0], [-75.5, 3.0], [-75.5, 5.0], [-77.0, 5.0], [-77.0, 3.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "18",
+        "DPTO_CNMBR": "Caquetá",
+        "REGION": "Amazonía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-76.0, 0.0], [-73.0, 0.0], [-73.0, 2.0], [-76.0, 2.0], [-76.0, 0.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "91",
+        "DPTO_CNMBR": "Amazonas",
+        "REGION": "Amazonía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.0, -2.0], [-70.0, -2.0], [-70.0, 1.0], [-75.0, 1.0], [-75.0, -2.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "86",
+        "DPTO_CNMBR": "Putumayo",
+        "REGION": "Amazonía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-77.0, 0.0], [-74.0, 0.0], [-74.0, 1.5], [-77.0, 1.5], [-77.0, 0.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "94",
+        "DPTO_CNMBR": "Guainía",
+        "REGION": "Orinoquía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-72.0, 1.0], [-68.0, 1.0], [-68.0, 4.0], [-72.0, 4.0], [-72.0, 1.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "95",
+        "DPTO_CNMBR": "Guaviare",
+        "REGION": "Orinoquía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-74.0, 0.5], [-70.0, 0.5], [-70.0, 3.0], [-74.0, 3.0], [-74.0, 0.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "97",
+        "DPTO_CNMBR": "Vaupés",
+        "REGION": "Orinoquía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-72.0, 0.0], [-69.0, 0.0], [-69.0, 2.0], [-72.0, 2.0], [-72.0, 0.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "99",
+        "DPTO_CNMBR": "Vichada",
+        "REGION": "Orinoquía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-72.0, 3.0], [-68.0, 3.0], [-68.0, 6.0], [-72.0, 6.0], [-72.0, 3.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "81",
+        "DPTO_CNMBR": "Arauca",
+        "REGION": "Orinoquía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-72.0, 6.0], [-70.0, 6.0], [-70.0, 8.0], [-72.0, 8.0], [-72.0, 6.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "85",
+        "DPTO_CNMBR": "Casanare",
+        "REGION": "Orinoquía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-73.0, 4.0], [-70.0, 4.0], [-70.0, 6.0], [-73.0, 6.0], [-73.0, 4.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DPTO_CCDGO": "88",
+        "DPTO_CNMBR": "San Andrés y Providencia",
+        "REGION": "Insular"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-81.5, 12.0], [-81.0, 12.0], [-81.0, 13.0], [-81.5, 13.0], [-81.5, 12.0]
+        ]]
+      }
+    }
+  ]
+}
+
