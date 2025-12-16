@@ -1,4 +1,4 @@
-# Vento Wind GIS Technology Validation
+# PoC GIS Technologies
 
    🌬️ **A Python-based wind energy suitability analysis tool using multicriteria decision making (MCDM) for spatial analysis.**
 
