@@ -1,10 +1,10 @@
 # PoC GIS Technologies
 
-   🌬️ **A Python-based wind energy suitability analysis tool using multicriteria decision making (MCDM) for spatial analysis.**
+
 
 ## 🎯 Purpose
 
-This proof-of-concept generates a Wind Suitability Index (WSI) by analyzing multiple spatial criteria including wind speed, terrain slope, and grid proximity. The system provides automated spatial analysis and reporting for wind energy site assessment.
+This proof-of-concept (PoC) generates a Wind Suitability Index (WSI) by analyzing the behavioral about of some technologies in GIS software applications with some spatial criteria including wind speed, terrain slope, and grid proximity.
 
 ## 🏗️ Architecture
 
